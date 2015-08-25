@@ -1,4 +1,4 @@
-package org.keedio.watcher
+package org.keedio.watcher.experimental
 
 /**
  * @author ${user.name}

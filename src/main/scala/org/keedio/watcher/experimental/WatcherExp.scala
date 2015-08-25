@@ -1,19 +1,9 @@
-package org.keedio.watcher
+package org.keedio.watcher.experimental
 
-import java.nio.file.FileSystem
-import java.nio.file.FileSystems
-import java.nio.file.WatchService
-import java.nio.file.WatchKey
-import java.nio.file.WatchEvent
 import java.nio.file.StandardWatchEventKinds._
-import java.nio.file.Path
-import java.nio.file.Paths
-
-import java.io.File
+import java.nio.file.{FileSystems, Paths, WatchEvent, WatchKey, WatchService}
 import java.util
 
-import org.apache.hadoop.fs
-import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.LocalFileSystem
 
@@ -27,18 +17,19 @@ import scala.collection.JavaConverters._
 object WatcherExp {
 
 
-    //    val localFileSystem: LocalFileSystem = org.apache.hadoop.fs.FileSystem.getLocal(new Configuration());
-    //    val localFile: File = localFileSystem.pathToFile(new fs.Path("csvdir"))
-    //    val path: java.nio.file.Path = localFile.toPath
+       val localFileSystem: LocalFileSystem = org.apache.hadoop.fs.FileSystem.getLocal(new Configuration())
+
+//        val localFile: File = localFileSystem.pathToFile(new fs.Path("path en hadoopt"))
+//        val dir: java.nio.file.Path = localFile.toPath
 
 
     def main(args: Array[String]) {
 
         val watcher: WatchService = FileSystems.getDefault.newWatchService()
-        val dir: java.nio.file.Path = Paths.get("/Users/luislazaro/folder")
+       val dir: java.nio.file.Path = Paths.get("/Users/luislazaro/folder")
 
 
-        dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY)
+       dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY)
 
 
         while (true) {
